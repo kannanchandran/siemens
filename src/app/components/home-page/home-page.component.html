@@ -1,0 +1,49 @@
+<div id="container">
+  <header>
+    Code Development Project
+  </header>
+  <div id="main" role="main">
+    <div id="large">
+      <div class="group">
+        <img src="../../../assets/images/large/{{image.image}}" alt="Large Image" width="430" height="360" />
+        <div class="details">
+          <p><strong>Title</strong> {{image.title}}</p>
+          <p><strong>Description</strong> {{image.description}}</p>
+          <p><strong>Cost</strong> {{image.cost}}</p>
+          <p><strong>ID #</strong> {{image.id}}</p>
+          <p><strong>Thumbnail File</strong> {{image.thumbnail}}</p>
+          <p><strong>Large Image File</strong> {{image.image}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mb-2 show-cursor">
+      <span title="Previous" (click)="prev()"><img src="../../../assets/images/previous.png">
+      </span>
+      <span> <a title="Next" (click)="next()"><img src="../../../assets/images/next.png"></a></span>
+    </div>
+
+
+    <div class="box-container" fxLayout="column">
+      <swiper *ngIf="show" class="swiper-container" fxFlex="auto" [config]="config" [disabled]="disabled"
+        (indexChange)="onIndexChange($event)">
+        <div *ngFor="let slide of slides;let i = index" class="swiper-slide">
+          <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+            <div class="thumbnails show-cursor p-3">
+              <div class="group">
+                <a #thumbnail title="{{slide.id}}" [class.highlighted]="slide.id == isSelected"
+                  (click)="thumbnailClicked(slide,i)">
+                  <img src="../../../assets/images/thumbnails/{{slide.thumbnail}}" alt="7111-m" width="145"
+                    height="121" />
+                  <span>{{slide.id}}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </swiper>
+    </div>
+
+    <footer>
+      <a href="instructions.pdf">Download PDF Instructions</a>
+    </footer>
+  </div>
